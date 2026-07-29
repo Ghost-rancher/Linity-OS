@@ -19,7 +19,7 @@
 #include <boot/early_pic.h>
 #include <boot/early_pit.h>
 
-extern void kernel_main();
+extern void kernel_main(void);
 
 void early_main(void);
 
