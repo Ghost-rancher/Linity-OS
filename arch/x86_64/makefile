@@ -75,7 +75,7 @@ limine: $(KERNEL_$(ARCH)) $(LIMINE)
 		$(LIMINE_BINARY_DIR)/limine-bios-cd.bin \
 		$(ISO_DIR)/boot/limine/
 	$(call run_and_log,[XORRISO] Creating ISO Image,$(ISO),$(XORRISO) $(XORRISOFLAGS) $(ISO_DIR) -o $(ISO))
-	$(call run_and_log,[LIMINE] Installing BIOS Boot Sectors,$(ISO),$(LIMINE) bios-install $(ISO) >/dev/null 2>&1)
+	$(call run_and_log,[LIMINE] Installing BIOS Boot Sectors,$(ISO),$(LIMINE) bios-install $(ISO))
 
 run_$(ARCH):
 	$(QEMU) $(QEMUFLAGS)
@@ -89,7 +89,7 @@ doctor:
 $(LIMINE):
 	@printf "\r\033[K$(COLOR_YELLOW)[CHECK] Downloading Limine... [WARN]$(COLOR_RESET)\n"
 	@mkdir -p $(LIMINE_BINARY_DIR)
-	@curl -sSL https://github.com/limine-bootloader/limine/releases/latest/download/limine-binary.tar.gz | \
+	@curl -sSL https://github.com/Limine-Bootloader/Limine/releases/download/v12.5.2/limine-binary.tar.gz | \
 	tar -xzf - --strip-components=1 -C $(LIMINE_BINARY_DIR)
 	@make -C $(LIMINE_BINARY_DIR) >/dev/null 2>&1
 	@printf "\r\033[K$(COLOR_GREEN)[CHECK] Limine is downloaded [OK]$(COLOR_RESET)\n"
